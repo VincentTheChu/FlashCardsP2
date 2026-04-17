@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlashCardsP2</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <p class="eyebrow">Language Study</p>
+          <h1>FlashCardsP2</h1>
+          <p class="sidebar-copy">
+            Build simple decks from notes or images, then study by flipping cards
+            or typing answers.
+          </p>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-button is-active" data-view="library">Library</button>
+          <button class="nav-button" data-view="import">Import</button>
+          <button class="nav-button" data-view="study">Study</button>
+        </nav>
+
+        <div class="sidebar-panel">
+          <p class="panel-label">Quick Stats</p>
+          <div class="stat-row">
+            <span>Total cards</span>
+            <strong id="total-cards-stat">0</strong>
+          </div>
+          <div class="stat-row">
+            <span>Groups</span>
+            <strong id="total-groups-stat">0</strong>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="view is-active" id="view-library">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Library</p>
+              <h2>Your cards</h2>
+            </div>
+            <button class="primary-button" id="create-group-button">New group</button>
+          </div>
+
+          <div class="card controls-card">
+            <div class="control-grid">
+              <label>
+                <span>Group</span>
+                <select id="group-filter"></select>
+              </label>
+              <label>
+                <span>Sort by</span>
+                <select id="sort-select">
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
+                  <option value="front-asc">Front A-Z</option>
+                  <option value="front-desc">Front Z-A</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="group-list" id="group-list"></div>
+          <div class="card-list" id="card-list"></div>
+        </section>
+
+        <section class="view" id="view-import">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Import</p>
+              <h2>Create cards</h2>
+            </div>
+          </div>
+
+          <div class="two-column-layout">
+            <div class="card import-card">
+              <div class="card-header">
+                <h3>From notes</h3>
+                <p>Paste one item per line using formats like `hola - hello` or `bonjour: hello`.</p>
+              </div>
+              <label>
+                <span>Save into group</span>
+                <input id="notes-group-input" type="text" placeholder="Spanish Basics" />
+              </label>
+              <label>
+                <span>Notes</span>
+                <textarea
+                  id="notes-input"
+                  rows="12"
+                  placeholder="hola - hello&#10;adios - goodbye&#10;gracias - thank you"
+                ></textarea>
+              </label>
+              <button class="primary-button" id="generate-notes-button">Generate cards</button>
+            </div>
+
+            <div class="card import-card">
+              <div class="card-header">
+                <h3>From image</h3>
+                <p>Upload a study image. The app will read its text, then suggest cards.</p>
+              </div>
+              <label>
+                <span>Save into group</span>
+                <input id="image-group-input" type="text" placeholder="Lesson 2 Notes" />
+              </label>
+              <label class="file-input-wrapper">
+                <span>Image file</span>
+                <input id="image-input" type="file" accept="image/*" />
+              </label>
+              <button class="secondary-button" id="scan-image-button">Read image</button>
+              <div class="status-box" id="ocr-status">No image selected yet.</div>
+              <label>
+                <span>Extracted text</span>
+                <textarea
+                  id="ocr-text"
+                  rows="8"
+                  placeholder="OCR text will appear here. You can edit it before generating cards."
+                ></textarea>
+              </label>
+              <button class="primary-button" id="generate-image-button">Generate from extracted text</button>
+            </div>
+          </div>
+
+          <div class="card review-card">
+            <div class="card-header">
+              <h3>Review generated cards</h3>
+              <p>Edit anything before adding to your library.</p>
+            </div>
+            <div id="draft-empty-state" class="empty-state">
+              Generate cards from notes or an image to review them here.
+            </div>
+            <div id="draft-list" class="draft-list"></div>
+            <div class="review-actions">
+              <button class="secondary-button" id="clear-drafts-button">Clear</button>
+              <button class="primary-button" id="save-drafts-button">Save cards</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-study">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Study</p>
+              <h2>Practice one group at a time</h2>
+            </div>
+          </div>
+
+          <div class="card controls-card">
+            <div class="control-grid">
+              <label>
+                <span>Group</span>
+                <select id="study-group-select"></select>
+              </label>
+              <label>
+                <span>Mode</span>
+                <select id="study-mode-select">
+                  <option value="flash">Flashcard mode</option>
+                  <option value="typed">Type answer mode</option>
+                </select>
+              </label>
+            </div>
+            <button class="primary-button" id="start-study-button">Start session</button>
+          </div>
+
+          <div class="card study-card" id="study-card">
+            <div id="study-empty-state" class="empty-state">
+              Choose a group and start a study session.
+            </div>
+
+            <div id="study-session" class="study-session is-hidden">
+              <div class="study-topline">
+                <span id="study-progress">Card 1 of 1</span>
+                <span id="study-group-label"></span>
+              </div>
+
+              <div class="flash-surface" id="flash-surface">
+                <p class="flash-label">Prompt</p>
+                <h3 id="study-front"></h3>
+                <div id="flash-answer" class="flash-answer is-hidden">
+                  <p class="flash-label">Answer</p>
+                  <p id="study-back"></p>
+                </div>
+              </div>
+
+              <div id="typed-answer-panel" class="typed-answer-panel is-hidden">
+                <label>
+                  <span>Your answer</span>
+                  <input id="typed-answer-input" type="text" placeholder="Type your answer" />
+                </label>
+                <button class="secondary-button" id="check-answer-button">Check answer</button>
+                <div class="status-box" id="typed-answer-result"></div>
+              </div>
+
+              <div class="study-actions">
+                <button class="secondary-button" id="reveal-button">Reveal answer</button>
+                <button class="primary-button" id="next-card-button">Next card</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="group-dialog">
+      <form method="dialog" class="dialog-form">
+        <div>
+          <p class="eyebrow">Group</p>
+          <h3>Create a new group</h3>
+        </div>
+        <label>
+          <span>Group name</span>
+          <input id="group-name-input" type="text" placeholder="French Verbs" />
+        </label>
+        <div class="dialog-actions">
+          <button class="secondary-button" value="cancel">Cancel</button>
+          <button class="primary-button" id="save-group-button" value="default">Save group</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="https://unpkg.com/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
