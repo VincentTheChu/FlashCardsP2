@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Your Name] — Content Marketing Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#20242E;
+    --ink-soft:#565B68;
+    --paper:#EDEAE1;
+    --paper-2:#E1DDCF;
+    --paper-3:#D6D1BF;
+    --card:#F6F4EB;
+    --accent:#5C3A52;
+    --accent-deep:#472B40;
+    --secondary:#3D6E63;
+    --line: rgba(32,36,46,0.13);
+    --line-strong: rgba(32,36,46,0.26);
+    --radius: 3px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .topline{
+    border-bottom:1px solid var(--line);
+  }
+  .topline .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:22px;
+    padding-bottom:22px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .topline .mark{
+    font-family:'Spectral', serif;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:0.01em;
+    text-transform:none;
+    color:var(--ink);
+  }
+
+  .hero{
+    padding:64px 0 56px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:44px;
+    align-items:start;
+  }
+  .hero-photo{
+    position:relative;
+  }
+  .hero-photo .frame{
+    width:100%;
+    aspect-ratio:4/5;
+    background:var(--card);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 15%;
+    display:block;
+  }
+  .hero-photo .cap{
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:10px;
+    text-align:center;
+  }
+
+  .hero-text .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+  }
+  .hero-text h1{
+    font-family:'Spectral', serif;
+    font-weight:600;
+    font-size:clamp(34px, 5vw, 50px);
+    line-height:1.1;
+    margin:0 0 18px;
+    letter-spacing:-0.005em;
+  }
+  .hero-text p{
+    font-size:16.5px;
+    color:var(--ink-soft);
+    max-width:56ch;
+    margin:0 0 12px;
+  }
+  .hero-text .links{
+    margin-top:20px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+  }
+  .hero-text .links a{
+    text-decoration:none;
+    border-bottom:1px solid var(--line-strong);
+    padding-bottom:2px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .hero-text .links a:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+
+  @media (max-width:640px){
+    .hero-grid{grid-template-columns:120px 1fr; gap:24px;}
+    .hero{padding:44px 0 40px;}
+  }
+
+  .section-label{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    padding:26px 0;
+    border-top:1px solid var(--line-strong);
+    border-bottom:1px solid var(--line);
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .section-label strong{
+    color:var(--ink);
+    font-weight:700;
+  }
+
+  .cards{
+    padding:8px 0 20px;
+  }
+  .card{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+    border-bottom:1px solid var(--line);
+  }
+  .card:last-child{border-bottom:none;}
+
+  .card-inner{
+    display:grid;
+    grid-template-columns:240px 1fr;
+    gap:36px;
+    align-items:center;
+    padding:34px 6px;
+    transition:transform .18s ease;
+  }
+  .card:nth-child(even) .card-inner{
+    grid-template-columns:1fr 240px;
+  }
+  .card:nth-child(even) .card-media{order:2;}
+  .card:nth-child(even) .card-body{order:1;}
+
+  .card-media{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    aspect-ratio:4/3;
+    overflow:hidden;
+  }
+  .card-media svg{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+  .card-media .ref{
+    position:absolute;
+    top:0;
+    left:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.07em;
+    padding:5px 9px;
+  }
+
+  .card-body .kicker{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--accent-deep);
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .card-body .kicker .dot{
+    width:5px;height:5px;border-radius:50%;
+    background:var(--accent);
+    display:inline-block;
+  }
+  .card-body h2{
+    font-family:'Spectral', serif;
+    font-weight:600;
+    font-size:24px;
+    line-height:1.24;
+    margin:0 0 10px;
+    letter-spacing:-0.003em;
+  }
+  .card-body p{
+    font-size:15px;
+    color:var(--ink-soft);
+    margin:0 0 14px;
+    max-width:52ch;
+  }
+  .card-body .go{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    color:var(--secondary);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .card-body .go svg{
+    width:13px;height:13px;
+    transition:transform .18s ease;
+  }
+
+  .card:hover .card-inner{transform:translateX(2px);}
+  .card:hover .card-body h2{color:var(--accent-deep);}
+  .card:hover .card-body .go svg{transform:translateX(3px);}
+  .card:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:4px;
+  }
+
+  @media (max-width:680px){
+    .card-inner, .card:nth-child(even) .card-inner{
+      grid-template-columns:1fr;
+      gap:18px;
+      padding:26px 4px;
+    }
+    .card:nth-child(even) .card-media{order:0;}
+    .card:nth-child(even) .card-body{order:0;}
+    .card-media{aspect-ratio:16/9;}
+  }
+
+  footer{
+    border-top:1px solid var(--line-strong);
+    padding:30px 0 60px;
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topline">
+    <div class="wrap">
+      <span class="mark">[Your Name]</span>
+      <span>Content Marketing Portfolio</span>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-photo">
+        <div class="frame">
+          <img src="headshot.jpeg" alt="[Your Name]">
+        </div>
+        <div class="cap">FIG. 01 — PORTRAIT</div>
+      </div>
+      <div class="hero-text">
+        <div class="eyebrow">Content Marketing &amp; Brand Storytelling</div>
+        <h1>Turning complex ideas<br>into stories people finish.</h1>
+        <p>
+          I'm a content marketing professional who writes and shapes editorial, customer-story,
+          and research content for security and technology brands — the kind of work that has
+          to hold a reader's attention while still being technically correct.
+          <!-- Replace this paragraph with your own 2–3 sentence bio. -->
+        </p>
+        <div class="links">
+          <a href="mailto:you@example.com">EMAIL</a>
+          <a href="#" target="_blank" rel="noopener">LINKEDIN</a>
+          <a href="#work">SEE THE WORK ↓</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="section-label" id="work">
+      <span>Selected Work</span>
+      <span><strong>05</strong> pieces</span>
+    </div>
+  </div>
+
+  <div class="wrap cards">
+
+    <!-- 01 -->
+    <a class="card" href="https://www.splunk.com/en_us/blog/security/the-state-of-security-2023-collaboration-is-essential-for-building-resilience.html" target="_blank" rel="noopener">
+      <div class="card-inner">
+        <div class="card-media">
+          <span class="ref">REF—01</span>
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="150" fill="#F6F4EB"/>
+            <path d="M75 55 L75 95 Q75 115 100 122 Q125 115 125 95 L125 55 Q100 45 75 55Z" fill="none" stroke="#3D6E63" stroke-width="2"/>
+            <path d="M62 70 L62 100 Q62 112 75 118" fill="none" stroke="#5C3A52" stroke-width="1.6"/>
+            <path d="M138 70 L138 100 Q138 112 125 118" fill="none" stroke="#5C3A52" stroke-width="1.6"/>
+            <circle cx="100" cy="80" r="6" fill="none" stroke="#20242E" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <div class="kicker"><span class="dot"></span>Blog Article · Splunk</div>
+          <h2>The State of Security 2023: Collaboration Is Essential for Building Resilience</h2>
+          <p>An editorial breakdown of a 1,500-respondent security research report, framing cross-team collaboration as the through-line connecting resilience, funding, and SOC modernization.</p>
+          <span class="go">Read the piece
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 02 -->
+    <a class="card" href="https://www.splunk.com/en_us/customers/success-stories/la-poste.html" target="_blank" rel="noopener">
+      <div class="card-inner">
+        <div class="card-media">
+          <span class="ref">REF—02</span>
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="150" fill="#F6F4EB"/>
+            <rect x="55" y="60" width="90" height="60" rx="2" fill="none" stroke="#3D6E63" stroke-width="2"/>
+            <path d="M55 62 L100 95 L145 62" fill="none" stroke="#3D6E63" stroke-width="2"/>
+            <rect x="118" y="48" width="20" height="22" rx="2" fill="none" stroke="#5C3A52" stroke-width="1.6"/>
+            <path d="M122 55 L134 55" stroke="#5C3A52" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <div class="kicker"><span class="dot"></span>Customer Story · Splunk</div>
+          <h2>La Poste Stamps Out False Alerts by 10x</h2>
+          <p>A customer success narrative on how France's national postal service rebuilt its security operations to protect 1.3 million customers' data while cutting false positives tenfold.</p>
+          <span class="go">Read the piece
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 03 -->
+    <a class="card" href="https://www.splunk.com/en_us/customers/success-stories/splunk-soc.html" target="_blank" rel="noopener">
+      <div class="card-inner">
+        <div class="card-media">
+          <span class="ref">REF—03</span>
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="150" fill="#F6F4EB"/>
+            <circle cx="90" cy="80" r="30" fill="none" stroke="#3D6E63" stroke-width="2"/>
+            <line x1="111" y1="101" x2="135" y2="125" stroke="#3D6E63" stroke-width="2"/>
+            <path d="M90 65 L90 80 L102 88" fill="none" stroke="#5C3A52" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <div class="kicker"><span class="dot"></span>Customer Story · Splunk</div>
+          <h2>Splunk's Own SOC Achieves a 7-Minute MTTD for Phishing Attacks</h2>
+          <p>An internal case study told from the inside — how Splunk's own detection and response team used automation to cut phishing investigation time by 90%.</p>
+          <span class="go">Read the piece
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 04 -->
+    <a class="card" href="https://www.splunk.com/en_us/blog/ciso-circle/cyber-fundamentals-in-ai-era.html" target="_blank" rel="noopener">
+      <div class="card-inner">
+        <div class="card-media">
+          <span class="ref">REF—04</span>
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="150" fill="#F6F4EB"/>
+            <path d="M85 100 L85 60 Q85 48 100 48 Q115 48 115 60 L115 78" fill="none" stroke="#3D6E63" stroke-width="2"/>
+            <rect x="76" y="95" width="18" height="16" rx="2" fill="none" stroke="#3D6E63" stroke-width="2"/>
+            <path d="M120 65 L134 65 M120 72 L138 72 M120 79 L130 79" stroke="#5C3A52" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <div class="kicker"><span class="dot"></span>Blog Article · Splunk CISO Circle</div>
+          <h2>Why It's Important to Brush Your Teeth: Cyber Fundamentals in the Era of AI</h2>
+          <p>A conceptual, analogy-led piece arguing that basic cyber hygiene — not flashy AI investment — is what actually prevents most breaches, built around an everyday habit readers already understand.</p>
+          <span class="go">Read the piece
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 05 -->
+    <a class="card" href="https://www.splunk.com/en_us/pdfs/gated/ebooks/industry-report-economic-impact-of-data.pdf" target="_blank" rel="noopener">
+      <div class="card-inner">
+        <div class="card-media">
+          <span class="ref">REF—05</span>
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="150" fill="#F6F4EB"/>
+            <line x1="60" y1="105" x2="140" y2="105" stroke="#20242E" stroke-width="2"/>
+            <rect x="68" y="80" width="14" height="25" fill="none" stroke="#3D6E63" stroke-width="2"/>
+            <rect x="93" y="65" width="14" height="40" fill="none" stroke="#3D6E63" stroke-width="2"/>
+            <rect x="118" y="50" width="14" height="55" fill="none" stroke="#5C3A52" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <div class="kicker"><span class="dot"></span>Gated Ebook · Splunk</div>
+          <h2>Industry Report: The Economic Impact of Data</h2>
+          <p>A downloadable research report translating survey data across seven industries into a clear business case for data maturity — built to convert readers into leads.</p>
+          <span class="go">Read the piece
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="wrap">
+    <footer>
+      <span>© <span id="year"></span> [Your Name]</span>
+      <span>Built with care, one case file at a time.</span>
+    </footer>
+  </div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
